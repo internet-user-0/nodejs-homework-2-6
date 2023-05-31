@@ -4,14 +4,6 @@ const {
    updateFavoriteSchema,
 } = require('../models/contact');
 
-const {
-   listContacts,
-   getContactById,
-   removeContact,
-   addContact,
-   updateContact,
-} = require('../models/contacts');
-
 const { HttpError, ctrlWrapper } = require('../helpers');
 
 const getAll = async (req, res, next) => {
