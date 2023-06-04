@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { isValidId } = require('../../helpers');
+const { authenticate, isValidId } = require('../../middleware');
 
 const {
    getAll,
@@ -12,16 +12,16 @@ const {
    updateStatusContact,
 } = require('../../controllers/contacts-consrollers');
 
-router.get('/', getAll);
+router.get('/', authenticate, getAll);
 
-router.get('/:contactId', isValidId, getById);
+router.get('/:contactId', authenticate, isValidId, getById);
 
-router.post('/', add);
+router.post('/', authenticate, add);
 
-router.delete('/:contactId', isValidId, remove);
+router.delete('/:contactId', authenticate, isValidId, remove);
 
-router.put('/:contactId', isValidId, update);
+router.put('/:contactId', authenticate, isValidId, update);
 
-router.patch('/:contactId/favorite', isValidId, updateStatusContact);
+router.patch('/:contactId/favorite', authenticate, isValidId, updateStatusContact);
 
 module.exports = router;
