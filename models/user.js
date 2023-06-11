@@ -12,6 +12,9 @@ const loginSchema = Joi.object({
    email: Joi.string().email().required(),
    password: Joi.string().min(6).required(),
 });
+const userEmailSchema = Joi.object({
+   email: Joi.string().email().required(),
+});
 
 const userShema = new Schema({
    password: {
@@ -36,6 +39,13 @@ const userShema = new Schema({
       type: String,
       required: true,
    },
+   verify: {
+      type: Boolean,
+      default: false,
+   },
+   verifikationCode: {
+      type: String,
+   }
 });
 
 userShema.post('save', handleMongooseError);
@@ -46,4 +56,5 @@ module.exports = {
    User,
    registerSchema,
    loginSchema,
+   userEmailSchema
 };
